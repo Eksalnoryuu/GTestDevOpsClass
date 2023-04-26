@@ -1,0 +1,6 @@
+FROM cont_build:latest
+WORKDIR /home/GTestDevOpsClass/build
+RUN cp /home/GTestDevOpsClass/build/main /home/
+RUN cd /home
+RUN rm -rf /GTestDevOpsClass
+CMD ["bash"]
