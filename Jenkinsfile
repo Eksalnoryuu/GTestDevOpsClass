@@ -10,7 +10,7 @@ pipeline {
                 {
                     try
                     {
-                    def contBuild = docker.image("kost13/cpp-gtest:gtest-v1.10-v1.1").rename("contBuild").inside("-u root")
+                    def contBuild = docker.image("kost13/cpp-gtest:gtest-v1.10-v1.1").inside("-u root")
                     {
                         sh "cd /home"
                         sh "git clone https://github.com/Eksalnoryuu/GTestDevOpsClass.git"
@@ -98,7 +98,7 @@ pipeline {
             {
                 script
                 {
-                contDeploy.rename("ContCPP")
+
                 }
                 archiveArtifacts artifacts: '*.tar', allowEmptyArchive: true
             }
