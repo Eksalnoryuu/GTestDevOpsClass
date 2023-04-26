@@ -72,6 +72,7 @@ pipeline {
             agent any
             steps 
             {
+                sh "docker save cont_deploy | gzip > docker-image.tar.gz"
                 archiveArtifacts artifacts: '*.tar', allowEmptyArchive: true
                 sh "docker container prune"
                 sh "docker volume prune"
