@@ -27,7 +27,9 @@ pipeline {
                     }
                     finally
                     {
-                        sh "rm -rf /home/GTestDevOpsClass"
+                        //sh "rm -rf /home/GTestDevOpsClass"
+                        contBuild.stop()
+                        contBuild.remove()
                     }
                 }
             }
@@ -35,11 +37,6 @@ pipeline {
             {
                 failure 
                 {
-                    script
-                    {
-                        contBuild.stop()
-                        contBuild.remove()
-                    }
                     // send email notification on failure
                     emailext body: "The 'build' stage has failed. Please check the build logs for more details.",
                         subject: "Pipeline failure",
