@@ -10,7 +10,7 @@ pipeline {
                 {
                     try
                     {
-                    def contBuild = docker.image("kost13/cpp-gtest:latest").contBuild.inside("-u root")
+                    def contBuild = docker.image("kost13/cpp-gtest:latest").inside("-u root")
                     {
                         sh "cd /home"
                         sh "ls -la"
