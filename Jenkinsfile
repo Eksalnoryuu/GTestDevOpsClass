@@ -84,14 +84,16 @@ pipeline {
                     def contDeploy = contTest.newImage("ContDeploy")
                     contDeploy.inside("-u root")
                     {
-                        sh " "
+                        sh "cd /home"
+                        sh "cp cd /home/GTestDevOpsClass/build/main /home "
+                        sh "rm -rf GTestDevOpsClass "
                     }
                 }
             }
         }
 
         stage('Publish') {
-            agent 
+            agent any
             steps 
             {
                 script
