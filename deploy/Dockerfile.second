@@ -1,0 +1,7 @@
+FROM ContBuild:latest
+WORKDIR /home/GTestDevOpsClass/build
+RUN ./mytests
+FROM base as test
+WORKDIR /home/GTestDevOpsClass/build
+RUN ./mytests
+CMD ["bash"]

@@ -1,5 +1,12 @@
 pipeline {
-    agent any
+    agent 
+    {
+        label "docker"
+    }
+    enviroment
+    {
+        
+    }
     stages 
     {
         stage('Build') 
@@ -8,30 +15,7 @@ pipeline {
             {
                 script
                 {
-                    def contBuild = docker.image("kost13/cpp-gtest:latest")
-                    sh "docker container ls -a"
-                    try
-                    {
-                        contBuild.inside("-u root")
-                        {
-                            sh "cd /home"
-                            sh "ls -la"
-                            sh "git clone https://github.com/Eksalnoryuu/GTestDevOpsClass.git"
-                            sh "ls -la"
-                            sh "cd /home/GTestDevOpsClass"
-                            sh "git clone https://github.com/google/googletest.git"
-                            sh "mkdir build"
-                            sh "cd /home/GTestDevOpsClass/build"
-                            sh "cmake .."
-                            sh "make"
-                        }
-                    }
-                    finally
-                    {
-                        contBuild.stop()
-                        contBuild.remove()
-                        //sh "rm -rf /home/GTestDevOpsClass"
-                    }
+                    sh "docker build -t ContBuild:latest -f /deploy/Dockerfile"
                 }
             }
             post 
@@ -53,19 +37,7 @@ pipeline {
             {
                 script
                 {
-                    def contTest = contBuild.newImage("contTest")
-                    try 
-                    {
-                        contTest.inside("-u root")
-                        {
-                            sh "cd /home/GTestDevOpsClass/Build"
-                            sh "./mytests"
-                        }
-                    }
-                    finally
-                    {
-
-                    }
+                    sh "docker build -t ContTest:latest -f /deploy/Dockerfile.second"
                 }
             }
             post 
@@ -87,13 +59,7 @@ pipeline {
             {
                 script
                 {
-                    def contDeploy = contTest.newImage("ContDeploy")
-                    contDeploy.inside("-u root")
-                    {
-                        sh "cd /home"
-                        sh "cp cd /home/GTestDevOpsClass/build/main /home "
-                        sh "rm -rf GTestDevOpsClass "
-                    }
+                    sh "docker build -t ContDeploy:1.0 -f /deploy/Dockerfile.third"
                 }
             }
         }
