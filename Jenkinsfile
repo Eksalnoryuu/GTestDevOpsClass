@@ -8,6 +8,7 @@ pipeline {
             {
                 script
                 {
+                    sh "ls -la"
                     sh "docker build -t cont_build /deploy/Dockerfile"
                 }
             }
@@ -18,7 +19,6 @@ pipeline {
                     // send email notification on failure
                     script
                     {
-                        sh "ls -la"
                         sh "docker container prune | y"
                         sh "docker volume prune | y"
                     }
