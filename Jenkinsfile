@@ -15,10 +15,10 @@ pipeline {
                         sh "cd /home"
                         sh "ls -la"
                         sh "git clone https://github.com/Eksalnoryuu/GTestDevOpsClass.git"
-                        sh "cd /home/GTestDevOpsClass"
+                        //sh "cd /home/GTestDevOpsClass"
                         sh "git clone https://github.com/google/googletest.git"
                         sh "mkdir build"
-                        sh "cd/home/GTestDevOpsClass/build"
+                        sh "cd /home/GTestDevOpsClass/build"
                         sh "cmake .."
                         sh "make"
                     }
@@ -33,6 +33,7 @@ pipeline {
             {
                 failure 
                 {
+                    contBuild.stop
                     // send email notification on failure
                     emailext body: "The 'build' stage has failed. Please check the build logs for more details.",
                         subject: "Pipeline failure",
