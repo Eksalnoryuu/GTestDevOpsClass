@@ -9,7 +9,7 @@ pipeline {
                 script
                 {
                     sh "ls -la"
-                    sh "docker build -t cont_build Dockerfile"
+                    sh "docker build -t cont_build ."
                 }
             }
             post 
@@ -36,7 +36,7 @@ pipeline {
             {
                 script
                 {
-                    sh "docker build -t cont_test -f /deploy/Dockerfile.second"
+                    sh "docker build -t cont_test -f Dockerfile.second ."
                 }
             }
             post 
