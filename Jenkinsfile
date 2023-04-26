@@ -9,26 +9,26 @@ pipeline {
                 script
                 {
                     def contBuild = docker.image("kost13/cpp-gtest:latest")
-                    contBuild.remove()
-                    contBuild.stop()
                     try
                     {
-                    contBuild.inside("-u root")
-                    {
-                        sh "cd /home"
-                        sh "ls -la"
-                        sh "git clone https://github.com/Eksalnoryuu/GTestDevOpsClass.git"
-                        sh "ls -la"
-                        sh "cd /home/GTestDevOpsClass"
-                        sh "git clone https://github.com/google/googletest.git"
-                        sh "mkdir build"
-                        sh "cd /home/GTestDevOpsClass/build"
-                        sh "cmake .."
-                        sh "make"
-                    }
+                        contBuild.inside("-u root")
+                        {
+                            sh "cd /home"
+                            sh "ls -la"
+                            sh "git clone https://github.com/Eksalnoryuu/GTestDevOpsClass.git"
+                            sh "ls -la"
+                            sh "cd /home/GTestDevOpsClass"
+                            sh "git clone https://github.com/google/googletest.git"
+                            sh "mkdir build"
+                            sh "cd /home/GTestDevOpsClass/build"
+                            sh "cmake .."
+                            sh "make"
+                        }
                     }
                     finally
                     {
+                        contBuild.stop()
+                        contBuild.remove()
                         //sh "rm -rf /home/GTestDevOpsClass"
                     }
                 }
