@@ -10,7 +10,8 @@ pipeline {
                 {
                     try
                     {
-                    def contBuild = docker.image("kost13/cpp-gtest:latest").inside("-u root")
+                    def contBuild = docker.image("kost13/cpp-gtest:latest")
+                    contBuild.inside("-u root")
                     {
                         sh "cd /home"
                         sh "ls -la"
@@ -27,7 +28,8 @@ pipeline {
                     finally
                     {
                         //sh "rm -rf /home/GTestDevOpsClass"
-
+                        contBuild.stop()
+                        contBuild.remove()
                     }
                 }
             }
