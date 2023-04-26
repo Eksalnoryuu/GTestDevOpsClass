@@ -9,7 +9,7 @@ pipeline {
                 script
                 {
                     def contBuild = docker.image("kost13/cpp-gtest:latest")
-                    contBuild.remove()
+                    sh "docker container ls -a"
                     try
                     {
                         contBuild.inside("-u root")
