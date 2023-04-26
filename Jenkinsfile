@@ -8,7 +8,7 @@ pipeline {
             {
                 script
                 {
-                    sh "docker build -t cont_build:latest -f /deploy/Dockerfile"
+                    sh "docker build -t cont_build:latest /deploy/Dockerfile"
                 }
             }
             post 
@@ -18,8 +18,8 @@ pipeline {
                     // send email notification on failure
                     script
                     {
-                        sh "docker container prune"
-                        sh "docker volume prune"
+                        sh "docker container prune | y"
+                        sh "docker volume prune | y"
                     }
                     emailext body: "The 'build' stage has failed. Please check the build logs for more details.",
                         subject: "Pipeline failure",
@@ -44,8 +44,8 @@ pipeline {
                 {
                     script
                     {
-                        sh "docker container prune"
-                        sh "docker volume prune"
+                        sh "docker container prune | y"
+                        sh "docker volume prune | y"
                     }
                     // send email notification on failure
                     emailext body: "The 'test' stage has failed. Please check the build logs for more details.",
