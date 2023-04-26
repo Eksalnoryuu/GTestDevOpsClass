@@ -10,11 +10,13 @@ pipeline {
                 {
                     try
                     {
-                    def contBuild = docker.image("kost13/cpp-gtest:latest").inside("-u root")
+                    def contBuild = docker.image("kost13/cpp-gtest:latest")
+                    contBuild.inside("-u root")
                     {
                         sh "cd /home"
                         sh "ls -la"
                         sh "git clone https://github.com/Eksalnoryuu/GTestDevOpsClass.git"
+                        sh "ls -la"
                         //sh "cd /home/GTestDevOpsClass"
                         sh "git clone https://github.com/google/googletest.git"
                         sh "mkdir build"
@@ -33,7 +35,8 @@ pipeline {
             {
                 failure 
                 {
-                    contBuild.remove("remove")
+                    contBuild.stop()
+                    contBuild.remove()
                     // send email notification on failure
                     emailext body: "The 'build' stage has failed. Please check the build logs for more details.",
                         subject: "Pipeline failure",
