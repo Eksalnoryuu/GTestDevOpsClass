@@ -96,10 +96,6 @@ pipeline {
             agent any
             steps 
             {
-                script
-                {
-
-                }
                 archiveArtifacts artifacts: '*.tar', allowEmptyArchive: true
             }
         }
