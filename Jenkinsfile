@@ -73,7 +73,7 @@ pipeline {
             steps 
             {
                 sh "docker save cont_deploy | gzip > docker-image.tar.gz"
-                archiveArtifacts artifacts: '*.tar', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'docker-image.tar.gz', allowEmptyArchive: true
                 sh "docker container prune"
                 sh "docker volume prune"
             }
