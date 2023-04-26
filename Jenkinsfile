@@ -63,7 +63,7 @@ pipeline {
             {
                 script
                 {
-                    sh "docker build -t cont_deploy:1.0 -f /deploy/Dockerfile.third"
+                    sh "docker build -t cont_deploy -f Dockerfile.third ."
                 }
             }
         }
