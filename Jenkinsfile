@@ -19,8 +19,8 @@ pipeline {
                     // send email notification on failure
                     script
                     {
-                        sh "docker container prune | y"
-                        sh "docker volume prune | y"
+                        sh "docker container prune | 'y'"
+                        sh "docker volume prune | 'y'"
                     }
                     emailext body: "The 'build' stage has failed. Please check the build logs for more details.",
                         subject: "Pipeline failure",
@@ -45,8 +45,8 @@ pipeline {
                 {
                     script
                     {
-                        sh "docker container prune | y"
-                        sh "docker volume prune | y"
+                        sh "docker container prune | 'y'"
+                        sh "docker volume prune | 'y'"
                     }
                     // send email notification on failure
                     emailext body: "The 'test' stage has failed. Please check the build logs for more details.",
