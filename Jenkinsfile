@@ -8,7 +8,7 @@ pipeline {
             {
                 script
                 {
-                    sh "docker build -t cont_build:latest /deploy/Dockerfile"
+                    sh "docker build -t cont_build /deploy/Dockerfile"
                 }
             }
             post 
@@ -35,7 +35,7 @@ pipeline {
             {
                 script
                 {
-                    sh "docker build -t cont_test:latest -f /deploy/Dockerfile.second"
+                    sh "docker build -t cont_test -f /deploy/Dockerfile.second"
                 }
             }
             post 
