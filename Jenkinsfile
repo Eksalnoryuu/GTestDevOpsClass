@@ -12,8 +12,9 @@ pipeline {
                     {
                     def contBuild = docker.image("kost13/cpp-gtest:latest").inside("-u root")
                     {
-                        sh "cd /home"
+                        sh "cd /home/"
                         sh "git clone https://github.com/Eksalnoryuu/GTestDevOpsClass.git"
+                        sh "ls -la"
                         sh "cd /home/GTestDevOpsClass"
                         sh "git clone https://github.com/google/googletest.git"
                         sh "mkdir build"
