@@ -76,6 +76,7 @@ pipeline {
                 archiveArtifacts artifacts: 'docker-image.tar.gz', allowEmptyArchive: true
                 sh "docker container prune"
                 sh "docker volume prune"
+                sh "docker image prune "
             }
         }
     }
