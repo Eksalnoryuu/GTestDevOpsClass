@@ -35,7 +35,7 @@ pipeline {
                     // send email notification on failure
                     emailext body: "The 'build' stage has failed. Please check the build logs for more details.",
                         subject: "Pipeline failure",
-                        to: "ameysztowicz@student.agh.edu.pl"m"
+                        to: "ameysztowicz@student.agh.edu.pl"
                 }
             }
         }
