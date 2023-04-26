@@ -27,8 +27,7 @@ pipeline {
                     finally
                     {
                         //sh "rm -rf /home/GTestDevOpsClass"
-                        contBuild.stop()
-                        contBuild.remove()
+
                     }
                 }
             }
