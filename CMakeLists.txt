@@ -7,5 +7,5 @@ add_subdirectory(googletest) # add googletest subdirectory
 include_directories(googletest/include) # this is so we can #include <gtest/gtest.h>
 
 add_executable(mytests calculator_test.cpp) # add this executable
-
+add_executable(main main.cpp)
 target_link_libraries(mytests PRIVATE gtest) # link google test to this executable
