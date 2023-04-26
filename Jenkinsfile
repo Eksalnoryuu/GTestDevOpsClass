@@ -33,7 +33,7 @@ pipeline {
             {
                 failure 
                 {
-                    contBuild.stop()
+                    contBuild.remove()
                     // send email notification on failure
                     emailext body: "The 'build' stage has failed. Please check the build logs for more details.",
                         subject: "Pipeline failure",
