@@ -1,8 +1,14 @@
 #include "calculator.h"
 #include <iostream>
-
+#include <unistd.h>
 int main ()
-{
-    std::cout << Add(4,5) << std::endl;
+{  
+    while(true)
+    {
+
+        std::cout << Add(4,5) << std::endl;
+        sleep(1);
+    }
     return 0;
+
 }
