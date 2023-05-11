@@ -7,4 +7,4 @@ RUN mkdir build
 WORKDIR /home/GTestDevOpsClass/build
 RUN cmake ..
 RUN make
-CMD [bash]
+CMD [./main]
